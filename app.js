@@ -13,8 +13,8 @@ const indexRouter = require("./routes/indexRouter");
 app.use("/", indexRouter);
 
 const PORT = 3000;
-app.listen(process.env.PORT, (error) => {
+app.listen(PORT, (error) => {
     if (error)
         throw error;
-    console.log(`Server running on port ${process.env.PORT}`);
+    console.log(`Server running on port ${PORT}`);
 })
