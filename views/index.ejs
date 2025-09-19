@@ -1,8 +1,18 @@
 <html>
     <head>
+        <link rel="stylesheet" href="index.css">
         <title>Game Collection</title>
     </head>
 </html>
 <body>
     <h1>Game Collection</h1>
+    <a href="/new">Add Game</a>
+    <ul>
+        <% if (locals.rows) { %>
+            <p>ID  Game   Platform(s)   Genre(s)</p>
+            <% rows.forEach((row) => { %>
+                <li><%= row.id %> | <%= row.game %> | <%= row.platforms %> | <%= row.genres %></li>
+            <% }) %>
+        <% }; %>
+    </ul>
 </body>

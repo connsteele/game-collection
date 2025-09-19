@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <title>Add Game</title>
+    </head>
+    <body>
+        <h1>Add a Game</h1>
+        <form action="/new" method="post">
+            <div>
+                <label for="name">Game Title</label>
+                <div><input type="text" name="name" id="name"></div>
+            </div>
+            <div>
+                <label for="platforms">Platform(s)</label>
+                <div>
+                    <input type="checkbox" name="platforms" id="PC" value="PC">
+                    <label for="pc">PC</label>
+                    <input type="checkbox" name="platforms" id="GameCube" value="GameCube">
+                    <label for="GameCube">GameCube</label>
+                    <input type="checkbox" name="platforms" id="PS2" value="PS2">
+                    <label for="PS2">PS2</label>
+                    <input type="checkbox" name="platforms" id="Xbox" value="Xbox">
+                    <label for="Xbox">Xbox</label>
+                </div>
+            </div>
+            <div>
+                <label for="genres">Genre(s)</label>
+                <div>
+                    <input type="checkbox" name="genres" id="FPS" value="FPS">
+                    <label for="FPS">FPS</label>
+                    <input type="checkbox" name="genres" id="Puzzle" value="Puzzle">
+                    <label for="Puzzle">Puzzle</label>
+                </div>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </body>
+</html>
