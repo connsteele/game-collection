@@ -11,7 +11,10 @@
         <% if (locals.rows) { %>
             <p>ID  Game   Platform(s)   Genre(s)</p>
             <% rows.forEach((row) => { %>
-                <li><%= row.id %> | <%= row.game %> | <%= row.platforms %> | <%= row.genres %></li>
+                <li>
+                    <%= row.id %> | <%= row.game %> | <%= row.platforms %> | <%= row.genres %> 
+                    <a href="/update/<%= row.id %>"><button type="button">Update</button></a>
+                </li>
             <% }) %>
         <% }; %>
     </ul>
