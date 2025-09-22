@@ -1,10 +1,11 @@
 const pool = require("../db/pool");
+const db = require("../db/queries");
 
 const addGameGet = (req, res) => {
     res.render("addGame");
 }
 
-const updateGameTable = async (gameTitle) => {
+const insertGameTable = async (gameTitle) => {
     const queryInsertGame = `
         INSERT INTO games 
             (name)
@@ -19,17 +20,7 @@ const updateGameTable = async (gameTitle) => {
     return gameId;
 };
 
-const getPlatformIds = async (platforms) => {
-    const res = await pool.query(
-        "SELECT id FROM platforms WHERE name = ANY($1)",
-        [Array.isArray(platforms) ? platforms : [platforms]]
-        // ensure a nested array is being passed
-    );
-    const ids = res.rows.map((row) => row.id);
-    return ids;
-};
-
-const updateGamePlatformJunction = async (gameId, platformIds) => {
+const insertGamePlatformJunction = async (gameId, platformIds) => {
     const queryInsertGamePlatform = `
         INSERT INTO game_platform
             (game_id, platform_id)
@@ -40,17 +31,7 @@ const updateGamePlatformJunction = async (gameId, platformIds) => {
     return await pool.query(queryInsertGamePlatform, [gameId, platformIds]);
 };
 
-const getGenresIds = async (genres) => {
-    const res = await pool.query(
-        "SELECT id FROM genres WHERE name = ANY($1)",
-        [Array.isArray(genres) ? genres : [genres]]
-        // ensure a nested array is being passed
-    );
-    const ids = res.rows.map((row) => row.id);
-    return ids;
-};
-
-const updateGameGenreJunction = async (gameId, genreIds) => {
+const insertGameGenreJunction = async (gameId, genreIds) => {
     const queryInsertGameGenre = `
         INSERT INTO game_genre
             (game_id, genre_id)
@@ -74,11 +55,11 @@ const addGamePost = [
         const platforms = req.body.platforms;
         const genres = req.body.genres;
 
-        const gameId = await updateGameTable(gameTitle);
-        const platformIds = await getPlatformIds(platforms);
-        await updateGamePlatformJunction(gameId, platformIds);
-        const genreIds = await getGenresIds(genres);
-        await updateGameGenreJunction(gameId, genreIds);
+        const gameId = await insertGameTable(gameTitle);
+        const platformIds = await db.getPlatformIds(platforms);
+        await insertGamePlatformJunction(gameId, platformIds);
+        const genreIds = await db.getGenresIds(genres);
+        await insertGameGenreJunction(gameId, genreIds);
 
         res.redirect("/");
     }

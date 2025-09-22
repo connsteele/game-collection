@@ -3,6 +3,6 @@ const updateRouter = Router();
 const updateController = require("../controllers/updateController");
 
 updateRouter.get("/:id", updateController.updateEntryGet);
-updateRouter.get("/:id", updateController.updateEntryPost);
+updateRouter.post("/:id", updateController.updateEntryPost);
 
 module.exports = updateRouter;
