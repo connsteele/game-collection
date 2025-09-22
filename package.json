@@ -6,7 +6,8 @@
     "pg": "^8.16.3"
   },
   "scripts": {
-    "start": "node --watch app.js",
+    "start": "NODE_ENV=production node app.js",
+    "dev": "NODE_ENV=development node --watch app.js",
     "populate": "node ./db/populateDb.js",
     "clear": "node ./db/clearDb.js"
   }
