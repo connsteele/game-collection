@@ -37,7 +37,10 @@ const insertPlatforms = `
             ('Xbox 360'),       
             ('Switch'),
             ('PS4'),
-            ('Xbox One')
+            ('Xbox One'),
+            ('PS5'),
+            ('Xbox Series'),
+            ('Switch 2')
         ON CONFLICT (name) DO NOTHING;
 `;
 
@@ -85,6 +88,17 @@ const insertGames = `
         WHERE
             games.name = 'Portal' AND 
             genres.name = 'Platformer';
+
+    INSERT INTO game_genre (game_id, genre_id)
+        SELECT
+            games.id, 
+            genres.id
+        FROM 
+            games,
+            genres
+        WHERE
+            games.name = 'Portal' AND 
+            genres.name = 'Puzzle';
 `;
 
 const main = async () => {
