@@ -1,8 +1,10 @@
 const pool = require("../db/pool");
 const db = require("../db/queries");
 
-const addGameGet = (req, res) => {
-    res.render("addGame");
+const addGameGet = async (req, res) => {
+    const platforms = await db.getPlatforms();
+    const genres = await db.getGenres();
+    res.render("addGame", {platforms: platforms, genres: genres});
 }
 
 const insertGameTable = async (gameTitle) => {

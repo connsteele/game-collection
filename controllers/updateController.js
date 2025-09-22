@@ -44,6 +44,9 @@ const updateEntryGet = async (req, res) => {
     if (Object.keys(req.params).length === 0)
         throw new Error("Cannot update without game id");
 
+    const allPlatforms = await db.getPlatforms();
+    const allGenres = await db.getGenres();
+
     const gameId = req.params.id;
     const gameName = await getTitle(gameId);
     const platforms = await getPlatforms(gameId);
@@ -53,7 +56,9 @@ const updateEntryGet = async (req, res) => {
         game_id: gameId,
         game_name: gameName,
         platforms: platforms,
-        genres: genres
+        genres: genres,
+        allPlatforms: allPlatforms,
+        allGenres: allGenres
     });
 };
 

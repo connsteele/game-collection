@@ -56,9 +56,42 @@ const getGenresIds = async (genres) => {
 };
 
 
+/**
+ * 
+ * @returns string[] containing all the names of platforms in the database
+ */
+const getPlatforms = async () => {
+    const select = `
+        SELECT
+            ARRAY_AGG(DISTINCT p.name) FILTER (WHERE p.name IS NOT NULL) AS Platforms
+        FROM
+            platforms AS p
+    `;
+
+    const platforms = (await pool.query(select)).rows[0].platforms;
+    return platforms;
+}
+
+/**
+ * 
+ * @returns string[] containing all the names of platforms in the database
+ */
+const getGenres = async () => {
+    const select = `
+        SELECT
+            ARRAY_AGG(DISTINCT g.name) FILTER (WHERE g.name IS NOT NULL) AS Genres
+        FROM
+            genres AS g
+    `;
+
+    const genres = (await pool.query(select)).rows[0].genres;
+    return genres;
+}
 
 module.exports = {
     getAll,
     getPlatformIds,
-    getGenresIds
+    getGenresIds,
+    getPlatforms,
+    getGenres
 }
