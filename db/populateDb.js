@@ -1,5 +1,7 @@
 const { Client } = require("pg");
-const dotenv = require("dotenv").config();
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config();
+}
 
 const createTables = `
     CREATE TABLE IF NOT EXISTS games (
