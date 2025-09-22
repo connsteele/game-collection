@@ -106,7 +106,7 @@ const insertGames = `
 const main = async () => {
     console.log("Populating database...");
 
-    const connection = process.env.DB_URL || undefined;
+    const connection = process.env.DATABASE_URL || undefined;
     if (connection) {
         console.log(`Connected to ${connection}`);
         const client = new Client({
