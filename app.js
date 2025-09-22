@@ -12,10 +12,12 @@ app.set("views", path.join(__dirname, "views"));
 const indexRouter = require("./routes/indexRouter");
 const newRouter = require("./routes/newRouter");
 const updateRouter = require("./routes/updateRouter");
+const deleteRouter = require("./routes/deleteRouter");
 
 app.use("/", indexRouter);
 app.use("/new", newRouter);
 app.use("/update", updateRouter);
+app.use("/delete", deleteRouter);
 
 const PORT = 3000;
 app.listen(PORT, (error) => {

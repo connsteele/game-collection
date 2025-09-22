@@ -13,7 +13,12 @@
             <% rows.forEach((row) => { %>
                 <li>
                     <%= row.id %> | <%= row.game %> | <%= row.platforms %> | <%= row.genres %> 
-                    <a href="/update/<%= row.id %>"><button type="button">Update</button></a>
+                    <form action="/update/<%= row.id %>" method="get" style="display: inline;">
+                        <button type="submit">Update</button>
+                    </form>
+                    <form action="/delete/<%= row.id %>" method="post" style="display: inline;">
+                        <button type="submit">Delete</button>
+                    </form>
                 </li>
             <% }) %>
         <% }; %>
